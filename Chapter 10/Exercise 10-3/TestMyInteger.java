@@ -1,3 +1,10 @@
+/*
+Author: Sean Briggs
+Date: 8/14
+
+This program contains a wrapper class for integers
+*/
+
 public class TestMyInteger {
 	public static void main(String[] args) {
 		String number = "1538";
