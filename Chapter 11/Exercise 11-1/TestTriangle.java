@@ -1,3 +1,10 @@
+/*
+ * Author: Sean Briggs
+ * Date: 8/15/25
+ * 
+ * This program creates triangles
+ */
+
 import java.util.*;
 
 public class TestTriangle {
