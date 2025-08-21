@@ -18,7 +18,7 @@ public class TestTriangle {
         System.out.print("Side 3: ");
         double side3 = input.nextDouble();
         System.out.print("Color: ");
-        String color = input.nextLine();
+        String color = input.next();
         System.out.print("Filled? (true/false): ");
         boolean filled = input.nextBoolean();
 
@@ -26,6 +26,7 @@ public class TestTriangle {
         t.setColor(color);
         t.setFilled(filled);
         System.out.println(t.toString());
+        input.close();
     }
 }
 
