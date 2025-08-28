@@ -5,7 +5,8 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.scene.shape.Polygon;
-import javafx.scene.text.Text;;
+import javafx.scene.text.Text;
+import javafx.scene.text.Font;
 
 public class ShowPolygon extends Application {
 	@Override // Override the start method in the Application class
@@ -21,9 +22,9 @@ public class ShowPolygon extends Application {
 	 * The main method is only needed for the IDE with limited
 	 * JavaFX support. Not needed for running from the command line.
 	 */
-	/* public static void main(String[] args) {
+	public static void main(String[] args) {
 		launch(args);
-	} */
+	}
 }
 
 class MyPolygon extends StackPane {
@@ -50,6 +51,7 @@ class MyPolygon extends StackPane {
 		Text text = new Text("STOP");
 		text.setFill(Color.WHITE);
 		text.setStroke(null);
+		text.setFont(Font.font("Times New Roman", 72));
 		
 		getChildren().clear();
 		getChildren().addAll(polygon, text);
