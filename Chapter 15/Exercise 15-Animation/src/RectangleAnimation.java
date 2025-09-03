@@ -22,29 +22,48 @@ import javafx.util.Duration;
 public class RectangleAnimation extends Application {
     @Override
     public void start(Stage primaryStage) {
-        Pane pane = new Pane();
+        AnimationPane pane = new AnimationPane(400, 350);
 
-        Rectangle rectangle = new Rectangle(0, 0, 50, 30);
+        // Create a scene and place it in the stage
+		Scene scene = new Scene(pane, 400, 350);
+		primaryStage.setTitle("Exercise 15-Animation"); // Set the stage title
+		primaryStage.setScene(scene); // Place the scene in the stage
+		primaryStage.show(); // Display the stage
+    }
+
+    public static void main(String[] args) {
+        launch(args);
+    }
+}
+
+class AnimationPane extends Pane {
+    private Rectangle rectangle;
+    private Polygon path;
+
+    public AnimationPane(double width, double height) {
+        double centerX = width / 2, centerY = height / 2;
+
+        rectangle = new Rectangle(0, 0, 50, 30);
         rectangle.setFill(Color.ORANGE);
 
-        Polygon path = new Polygon();
-		path.setFill(Color.WHITE);
-		path.setStroke(null);
-		ObservableList<Double> pathList = path.getPoints();
+        path = new Polygon();
+	    path.setFill(Color.WHITE);
+	    path.setStroke(null);
+	    ObservableList<Double> pathList = path.getPoints();
 		
-		double centerX = pane.getWidth() / 2, centerY = pane.getHeight() / 2;
-		double radius = Math.min(pane.getWidth(), pane.getHeight()) * 0.4;
-		// s represents the number of sides of the shape
-		// Make sure to update this number when necessary
-		int s = 5;
-		// Add points to the polygon list
-		for (int i = 0; i < s; i++) {
-			pathList.add(centerX + radius * Math.cos(2 * i * Math.PI / s)); 
-			pathList.add(centerY - radius * Math.sin(2 * i * Math.PI / s));
-		}
-		path.setRotate(180 / s);
+	    double radius = Math.min(centerX, centerY) * 0.8;
+	    // s represents the number of sides of the shape
+	    // Make sure to update this number when necessary
+	    int s = 5;
+	    // Add points to the polygon list
+	    for (int i = 0; i < s; i++) {
+		    pathList.add(centerX + radius * Math.cos(2 * i * Math.PI / s)); 
+		    pathList.add(centerY - radius * Math.sin(2 * i * Math.PI / s));
+	    }
+	    path.setRotate(-90);
 
-        pane.getChildren().addAll(path, rectangle);
+        getChildren().clear();
+        getChildren().addAll(path, rectangle);
 
         PathTransition pt = new PathTransition();
         pt.setDuration(Duration.millis(4000));
@@ -52,13 +71,13 @@ public class RectangleAnimation extends Application {
         pt.setNode(rectangle);
         pt.setOrientation(PathTransition.OrientationType.ORTHOGONAL_TO_TANGENT);
         pt.setCycleCount(Timeline.INDEFINITE);
-        pt.setAutoReverse(true);
+        pt.setAutoReverse(false);
         pt.play();
 
         FadeTransition ft = new FadeTransition(
             Duration.millis(4000), rectangle);
         ft.setFromValue(1.0);
-        ft.setToValue(0.0);
+        ft.setToValue(0.1);
         ft.setCycleCount(Timeline.INDEFINITE);
         ft.setAutoReverse(true);
         ft.play();
@@ -72,15 +91,5 @@ public class RectangleAnimation extends Application {
                 ft.pause();
             }
         });
-
-        // Create a scene and place it in the stage
-		Scene scene = new Scene(pane, 400, 350);
-		primaryStage.setTitle("Exercise 15-Animation"); // Set the stage title
-		primaryStage.setScene(scene); // Place the scene in the stage
-		primaryStage.show(); // Display the stage
-    }
-
-    public static void main(String[] args) {
-        launch(args);
     }
 }
