@@ -1,3 +1,10 @@
+/* 
+ * Author: Sean Briggs
+ * Date Created: 9/4/25
+ * 
+ * This program creates text that moves and changes color
+ */
+
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.geometry.Pos;
